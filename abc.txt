@@ -1,0 +1,76 @@
+import pytesseract
+import cv2
+import os
+
+def tdi(filename):
+    pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files (x86)\Tesseract-OCR\tesseract.exe'
+    result = open("C:\\Users\\woojye\\Desktop\\image_manager_usingFlask\\static\\output.txt","w", encoding='UTF-8')
+
+    path_dir = 'C:\\Users\\woojye\\Desktop\\image_manager_usingFlask\\static'
+    file_list = os.listdir(path_dir)
+
+    for file_name in file_list :
+        if file_name == "output.txt":
+            continue
+        result.write(pytesseract.image_to_string('C:\\Users\\woojye\\Desktop\\image_manager_usingFlask\\static\\'+file_name,lang='ENG',config='--psm 4 -c preserve_interword_spaces=1')+'\n')
+        #원래는 filename 대신 file_name
+    result.close()
+    
+    os.rename("C:\\Users\\woojye\\Desktop\\image_manager_usingFlask\\static\\output.txt", "C:\\Users\\woojye\\Desktop\\image_manager_usingFlask\\static\\1{}.txt".format(filename))
+
+//
+
+    app = Flask("Flask Image Gallery")
+app.config['IMAGE_EXTS'] = [".png", ".jpg", ".jpeg", ".gif", ".tiff"]
+
+
+def encode(x):
+    return binascii.hexlify(x.encode('utf-8')).decode()
+
+def decode(x):
+    return binascii.unhexlify(x.encode('utf-8')).decode()
+
+@app.route('/')
+def home():
+    root_dir = app.config['ROOT_DIR']
+    image_paths = []
+    for root,dirs,files in os.walk(root_dir):
+        for file in files:
+            if any(file.endswith(ext) for ext in app.config['IMAGE_EXTS']):
+                image_paths.append(encode(os.path.join(root,file)))
+    return render_template('index.html', paths=image_paths)
+
+//
+import os
+
+def searcher(uid): #검색한 키워드가 포함된 사진의 이름을 확장자와 함께 반환한다.
+    searchstring=uid
+    for (path, dir, files) in os.walk("C:\\Users\\woojye\\Desktop\\image_manager_usingFlask\\static"):
+        for filename in files:
+            with open(path+os.sep+filename, 'r', encoding='utf-8') as f:
+                try:
+                    if searchstring in f.read():
+                        a=filename
+                        b=a.rsplit('.')[0]+".{}".format("jpg")
+                        return b
+                    else:
+                        pass
+                except:
+                    pass
+
+
+    {% if True %}
+    <img src="{{ url_for('static', filename=image_file) }}">
+    {% endif %}
+
+showing.html
+    <img src="{{ url_for('static', filename=image_file) }}">
+
+
+C:/Users/woojye/Desktop/image_manager_usingFlask/
+
+<div>
+    {% for path in image_file %}
+    <p>{{path}}</p>
+    {% endfor %}
+</div>

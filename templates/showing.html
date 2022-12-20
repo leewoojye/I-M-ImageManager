@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Image Manager</title>
+</head>
+<body>
+<center><h1 style="border-bottom: 1px solid #688FF4; padding: 0.1em;"><b>이미지 검색 결과</b></h1></center>
+<div>
+    {% for path in image_file %}    
+    <center><h2><span style="border-bottom: 12px solid #dcf1fb; padding: 0 0 0 0.2em;">이미지 출력</span></h2></center>
+    <center><img src="static/{{path}}"></center>
+    <center><h2><span style="border-bottom: 12px solid #dcf1fb; padding: 0 0 0 0.2em;">사진 이름</span></h2></center>
+    <a href="static/{{path}}">
+    <center><p>{{path}}</p></center>
+    </a>
+    {% endfor %}
+</div>
+</body>
+</html>
