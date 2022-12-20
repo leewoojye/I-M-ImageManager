@@ -31,6 +31,8 @@
 3) keybertt 폴더 속 mainpoint.py의 relativeword() 함수에서 target 변수를 새로운 키워드로 변경합니다.
 4) bridge.py bridgefuction() 함수에서 min_score, min_frequency 변수를 조정하여 키워드 추출 기준을 설정할 수 있습니다.
 
+## 슬라이드 
+
 ![poster](/slide/슬라이드3.JPG)
 ![poster](/slide/슬라이드4.JPG)
 ![poster](/slide/슬라이드5.JPG)
